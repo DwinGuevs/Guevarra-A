@@ -1,0 +1,366 @@
+/* ==========================================
+   RESUME DESIGN SYSTEM & VARS
+   ========================================== */
+:root {
+    --bg-primary: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #2d3748;
+    --text-muted: #718096;
+    
+    /* Aviation & Tech Color Palette */
+    --primary: #1e3a8a;       /* Deep Jet Blue */
+    --accent: #00d2ff;        /* Avionics Radar Cyan */
+    --accent-glow: rgba(0, 210, 255, 0.2);
+    --dark-slate: #0f172a;
+    
+    --border-radius: 12px;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================
+   CORE RESET
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.resume-container {
+    max-width: 1020px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ==========================================
+   HEADER / HERO (Lively Interactive Glow)
+   ========================================== */
+.resume-header {
+    background: linear-gradient(135deg, var(--dark-slate) 0%, var(--primary) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition-smooth);
+}
+
+.resume-header:hover {
+    box-shadow: 0 10px 30px rgba(30, 58, 138, 0.3);
+    transform: translateY(-2px);
+}
+
+.header-glare {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+.name {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.name span {
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+}
+
+/* Pure CSS Underline Draw Interaction */
+.name span::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent);
+    transition: var(--transition-smooth);
+}
+
+.resume-header:hover .name span::after {
+    width: 100%;
+}
+
+.target-role {
+    font-size: 1.25rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+.contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.contact-info a:hover {
+    color: white;
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* ==========================================
+   LAYOUT GRID
+   ========================================== */
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .resume-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   CARDS & HOVER ANIMATIONS
+   ========================================== */
+.card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: var(--transition-smooth);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Micro-Interaction: Elevate and border light up on hover */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(0, 210, 255, 0.4);
+}
+
+.section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--dark-slate);
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #edf2f7;
+}
+
+/* Side accent bar reveals when hovering over the parent element card */
+.card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    height: 25px;
+    width: 4px;
+    background-color: var(--primary);
+    border-radius: 0 4px 4px 0;
+    transition: var(--transition-smooth);
+}
+
+.card:hover::before {
+    background-color: var(--accent);
+    height: calc(100% - 4rem);
+}
+
+/* ==========================================
+   INTERNAL OBJECT STYLING
+   ========================================== */
+/* Timeline Style */
+.timeline-list {
+    list-style: none;
+}
+
+.timeline-list li {
+    position: relative;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+
+.timeline-list li:last-child {
+    padding-bottom: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50px;
+    background-color: #edf2f7;
+    color: var(--text-muted);
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+}
+
+.badge-success { background-color: #d1fae5; color: #065f46; }
+.badge-primary { background-color: #dbeafe; color: #1e40af; }
+
+/* Job Items */
+.job-item {
+    padding: 1rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+.job-item:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.job-header h3 { font-size: 1.1rem; color: var(--dark-slate); }
+.date { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+.company { color: var(--primary); font-weight: 600; font-size: 0.95rem; }
+
+/* Education Blocks */
+.edu-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+.edu-item:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.edu-item h4 { font-size: 1.05rem; color: var(--dark-slate); }
+.edu-item .school { font-size: 0.95rem; color: var(--primary); font-weight: 500; }
+.date-tag {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    background: #f1f5f9;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Interactive Pill Tags */
+.subsection-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin: 1rem 0 0.5rem 0;
+}
+.skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.tag {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    cursor: default;
+}
+.tag.tech { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+.tag.soft { background-color: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+
+/* Tag Pop Animation */
+.tag:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.tag.tech:hover { background-color: var(--accent); color: var(--dark-slate); }
+.tag.soft:hover { background-color: #c084fc; color: white; }
+
+/* Certifications list mapping */
+.cert-list {
+    list-style: none;
+}
+.cert-list li {
+    padding: 0.5rem 0;
+    border-left: 2px solid #cbd5e1;
+    padding-left: 0.75rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transition-smooth);
+}
+.cert-list li:hover {
+    border-left-color: var(--accent);
+    padding-left: 1rem;
+}
+
+/* ==========================================
+   FOOTER & REFERENCES GRID
+   ========================================== */
+.resume-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.ref-card {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    transition: var(--transition-smooth);
+}
+
+.ref-card:hover {
+    background: white;
+    border-color: var(--accent);
+    box-shadow: var(--shadow-light);
+}
+
+.ref-card h4 { font-size: 1rem; color: var(--dark-slate); }
+.ref-card p { font-size: 0.85rem; color: var(--text-muted); }
+.ref-card .phone { font-size: 0.85rem; color: var(--primary); font-weight: 600; display: block; margin-top: 0.25rem; }
+
+.declaration {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 2px dashed #e2e8f0;
+}
+
+.signature {
+    margin-top: 0.5rem;
+    font-weight: 700;
+    color: var(--dark-slate);
+    font-size: 1.1rem;
+}
